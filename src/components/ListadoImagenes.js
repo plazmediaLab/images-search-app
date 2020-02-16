@@ -6,13 +6,10 @@ import Imagen from './Imagen';
 
 const ContainerGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   margin: 1rem 0;
 
-  @media (max-width: 987px){
-    grid-template-columns: repeat(4, 1fr);
-  }
   @media (max-width: 786px){
     grid-template-columns: repeat(3, 1fr);
   }

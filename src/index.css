@@ -1,13 +1,179 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.card-image{
+  position: relative;
+  background-color: var(--White);
+  color: var(--texto-color);
+  border-radius: .53em;
+  /* border: .1rem solid var(--gray-background-3); */
+  padding: 0;
+  overflow: hidden;
+  height: min-content;
+  z-index: 0;
+  -webkit-box-shadow: 0px 2.5px 5px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 2.5px 5px 0px rgba(0,0,0,0.25);
+      box-shadow: 0px 2.5px 5px 0px rgba(0,0,0,0.25);
+}
+.card-image-top{
+  position: relative;
+  height: 10em;
+  z-index: 5;
+}
+.card-image-top img{
+  height: auto;
+  width: 100%;
+}
+.image-title{
+  position: absolute;
+  z-index: 10;
+  font-size: 1.3em;
+  bottom: 2rem;
+  left: 1.3rem;
+  color: var(--White);
+  font-weight: 600;
+  text-shadow: 0px 0px 3px #000000;
+}
+.card-image-body{
+  position: relative;
+  z-index: 10;
+  padding: 1.13rem;
+  padding-top: 2.932rem;
+  background-color: var(--White);
+  border-top: .1rem solid var(--gray-background-3);
+}
+.card-image-body hr{
+  margin: .934rem 0;
+  border-color: var(--gray-background-3);
+}
+.card-image-body > p{
+  text-align: justify;
+  text-justify: inter-word;
+}
+.card-image-btn,
+.card-image-btn a{
+  position: absolute;
+  top: -1.3em;
+  right: 1.02em;
+  background-color: var(--tomato);
+  padding: .852em .966em .752em;
+  text-decoration: none;
+  color: var(--White);
+  border-radius: 2em;
+  line-height: 1;
+  -webkit-box-shadow: 0px 3px 5px -3px rgba(0,0,0,.83);
+    -moz-box-shadow: 0px 3px 5px -3px rgba(0,0,0,.83);
+      box-shadow: 0px 3px 5px -3px rgba(0,0,0,.83);
+}
+.card-stats{
+  display: flex;
+  flex-wrap: wrap;
+}
+/* .card-stats > *{
+  display: inline-block!important;
+  width: max-content;
+} */
+.card-stats > *{
+  margin-bottom: .623rem!important;
+}
+.card-stats > *:not(:last-child){
+  margin-right: .623rem!important;
+}
+.card-image-footer{
+  position: relative;
+  background-color: var(--White);
+  padding: 1.13rem;
+  padding-top: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-flow: wrap;
+  z-index: 15;
+}
+.card-image-footer > *:not(:first-child){
+  margin-left: 1rem;
+}
+@media only screen and (max-width: 1000px){
+/* Tablets en horizonal y escritorios normales */
+  .card-image-top{
+    height: 8em;
+  }
+  .image-title{
+    font-size: 1.2em;
+    left: 1rem;
+  }
+  .card-image-body{
+    padding: 1rem;
+    padding-top: 2.932rem;
+  }
+  .card-image-footer{
+    padding: 1rem;
+    padding-top: 0;
+  }
+}
+@media only screen and (max-width: 767px){
+/* Móviles en horizontal o tablets en vertical */
+    .card-image-top{
+      height: 6em;
+    }
+    .image-title{
+      font-size: 1.1em;
+      left: .953rem;
+    }
+    .card-image-body{
+      padding: .953rem;
+      padding-top: 2.932rem;
+    }
+    .card-image-footer{
+      padding: .953rem;
+      padding-top: 0;
+    }
+}
+/* ---------------------------- */
+/* BTN */
+/* --------ˇˇˇˇˇˇˇˇˇˇˇˇ-------- */
+.btn-empty-cancel{
+  background: transparent!important;
+  background-color: transparent!important;
+  border-color: transparent!important;
+  color: var(--cancel);
+  font-weight: 700;
+}
+.btn-empty-cancel:hover{
+  background-color: var(--cancel)!important;
+  border-color: var(--cancel)!important;
+  color: var(--White);
+}
+.btn-empty-cancel:active{
+  background-color: var(--cancel-active)!important;
+  border-color: var(--cancel-active)!important;
+  color: var(--White);
+}
+.btn-empty-blue{
+  background: transparent!important;
+  background-color: transparent!important;
+  border-color: transparent!important;
+  color: var(--blue);
+  font-weight: 700;
+}
+.btn-empty-blue:hover{
+  background-color: var(--blue)!important;
+  border-color: var(--blue)!important;
+  color: var(--White);
+}
+.btn-empty-blue:active{
+  background-color: var(--blue-active)!important;
+  border-color: var(--blue-active)!important;
+  color: var(--White);
+}
+/* ---------------------------- */
+/* TAG */
+/* --------ˇˇˇˇˇˇˇˇˇˇˇˇ-------- */
+.tag-gray{
+  background-color: var(--gray-background-2)!important;
+  color: var(--texto-light)!important;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+
+
+.btn{
+  white-space: nowrap;
 }
