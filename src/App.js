@@ -38,11 +38,11 @@ function App() {
   // STATE
   const [error, guardarError] = useState(false);
   const [busqueda, guardarBusqueda] = useState('');
+  const [hayresultados, guardarHayResultados] = useState(true);
   const [imagenes, guardarImagenes] = useState([]);
   const [paginaactual, guardarPaginaActual] = useState(1);
   const [totalpaginas, guardarTotalPaginas] = useState(1);
 
-  const [resultados, guardarResultados] = useState(false);
   const [totalresultados, guardarTotalResultados] = useState(0);
   const [totalresultadospixabay, guardarTotalResultadosPixabay] = useState(0);
 
@@ -55,37 +55,45 @@ function App() {
 
       const imagenesPorPagina = 30;
       const key = '15267306-f7d4977593e90dfd66b28ce54';
-      const url = `https://pixabay.com/api/?key=${key}&q=${busqueda}&per_page=${imagenesPorPagina}`;
+      const url = `https://pixabay.com/api/?key=${key}&q=${busqueda}&per_page=${imagenesPorPagina}&page=${paginaactual}`;
   
       const respuesta = await fetch(url);
       const resultados = await respuesta.json()
+
+      if(resultados.total < 1){
+        guardarHayResultados(false)
+      }else{
+        guardarHayResultados(true)
+      };
 
       // Resultados de la consulta
       guardarImagenes(resultados.hits)
       
       // Resultados de la consulta
-      if (resultados.totalHits !== 0) {
-        guardarResultados(true)
-        guardarTotalResultados(resultados.totalHits)
-        guardarTotalResultadosPixabay(resultados.total)
-      }
+      guardarTotalResultados(resultados.totalHits)
+      guardarTotalResultadosPixabay(resultados.total)
+
 
       // Calcular total de páginas
       const calcularTotalPaginas = Math.ceil(resultados.totalHits / imagenesPorPagina);
       guardarTotalPaginas(calcularTotalPaginas)
 
+      // Scroll top
+      const topView = document.querySelector('#formSearch')
+      topView.scrollIntoView({behavior: 'smooth'});
     };
     
     consultaAPI();
 
-  }, [busqueda]);
+  }, [busqueda, paginaactual, totalresultados]);
+
 
   return (
     <div className="App container">
       <ContainerMain>
         <p><small><i className="a-imagotype af-l"></i></small></p>
         <h1> image<span>FINDER</span> <i className="a-pied-piper-alt af-l i-h-flip"></i></h1>
-        <hr />
+        <hr id='formSearch'/>
 
         <Formulario 
           guardarError={guardarError}
@@ -95,10 +103,11 @@ function App() {
 
       </ContainerMain>
 
-      <Info 
-        resultados={resultados}
+      <Info
         totalresultados={totalresultados}
         totalresultadospixabay={totalresultadospixabay}
+        hayresultados={hayresultados}
+        busqueda={busqueda}
       />
 
       {error ? <p className="msn msn-s-warning vm-2"><i className="a-info-warning"></i>&nbsp; Write a term to search</p> : null}
@@ -111,7 +120,14 @@ function App() {
         paginaactual={paginaactual}
         guardarPaginaActual={guardarPaginaActual}
         totalpaginas={totalpaginas}
+        hayresultados={hayresultados}
       />
+
+      <footer className="vm-3">
+        <hr />
+        <p className="txt-a-c txt-brand-2"><small>Plazmedia & PLAZreset-CSS · Hosted by Pixabay · &copy;2020 Copyright</small></p>
+      </footer>
+
     </div>
   );
 }

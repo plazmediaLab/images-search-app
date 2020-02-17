@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 import Imagen from './Imagen';
 
@@ -30,5 +31,10 @@ const ListadoImagenes = ({ imagenes }) => {
     </ContainerGrid>
   );
 };
+
+
+ListadoImagenes.propTypes = {
+  imagenes: PropTypes.array.isRequired,
+}
 
 export default ListadoImagenes

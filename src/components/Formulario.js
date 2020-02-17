@@ -1,5 +1,6 @@
 import React, {useState, Fragment} from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 
 const Col9 = styled.div`
@@ -67,5 +68,12 @@ const Formulario = ( {guardarError, guardarBusqueda} ) => {
     </Fragment>
   );
 };
+
+
+Formulario.propTypes = {
+  guardarError: PropTypes.func.isRequired,
+  guardarBusqueda: PropTypes.func.isRequired,
+}
+
 
 export default Formulario

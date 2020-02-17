@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 
 const ContainerDiv = styled.div`
@@ -27,17 +28,28 @@ const ContainerDiv = styled.div`
 
 
 
-const Info = ({totalresultados, totalresultadospixabay}) => {
+const Info = ({totalresultados, totalresultadospixabay, hayresultados, busqueda}) => {
 
   const contenido = (!totalresultados) 
     ? <p>Results of <span>Pixabay</span>, Its image bank has more than 1,600943 million images shared by the community and its talent.</p>
     : <p className="txt-a-l"><span>{totalresultados}</span> Results found available | <span>{totalresultadospixabay}</span> Results available on Pixabay - <a href="https://pixabay.com/es/">go to their page</a></p>;
 
   return (
-    <ContainerDiv>
-      {contenido}
-    </ContainerDiv>
+    <Fragment>
+      <ContainerDiv>
+        {contenido}
+      </ContainerDiv>
+
+      {(!hayresultados) ? <p className="msn msn-s-cancel"><i className="a-chrome-dino">&nbsp; </i>No results were found with the search "{busqueda}"</p> : null} 
+    </Fragment>
   );
 };
+
+Info.propTypes = {
+  totalresultados: PropTypes.number.isRequired,
+  totalresultadospixabay: PropTypes.number.isRequired,
+  hayresultados: PropTypes.bool.isRequired,
+  busqueda: PropTypes.string.isRequired,
+}
 
 export default Info
